@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<bai_thuc_hanh_1.Models.Student>
+<a asp-action="Create" class="btn btn-primary">Create Student</a>
+<h2>@ViewBag.leng</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Full Name</th>
+            <th>Date of Birth</th>
+            <th>Branch</th>
+            <th>Gender</th>
+            <th>Type of training</th>
+            <th>Address</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.DateOfBirth</td>
+                @{
+                        string s = "";
+                        switch(student.Branch)
+                        {
+                            case Branch.IT:
+                                s = "CNTT";
+                                break;
+                            case Branch.BE:
+                                s = "Kinh tế";
+                                break;
+                            case Branch.CE:
+                                s = "Công trình";
+                                break;
+                            case Branch.EE:
+                                s = "Điện - Điện tử";
+                                break;
+                        }
+                    }
+                <td>@s</td>
+                <td>@(student.Gender==Gender.Male?"Male":"Female")</td>
+                <td>@(student.IsRegular?"Regular":"Isn't Regular")</td>
+                <td>@student.Address</td>
+                <td>@student.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
