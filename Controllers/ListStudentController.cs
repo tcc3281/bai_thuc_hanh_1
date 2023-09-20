@@ -26,9 +26,7 @@ namespace bai_thuc_hanh_1.Controllers
         [HttpGet("List")]
         public IActionResult Index()
         {
-            ViewBag.list=students;  
-
-            return View("ListStudent",students); 
+            return View(students); 
         }
         [HttpGet("Add")]
         public IActionResult Create()
@@ -38,12 +36,12 @@ namespace bai_thuc_hanh_1.Controllers
             //lấy danh sách các giá trị Branch để hiển thị select-option trên form
             //Để hiển thị select-option trên View cần dùng List<SelectListItem>
             ViewBag.AllBranches = new List<SelectListItem>()
-{
-new SelectListItem { Text = "IT", Value = "1" },
-new SelectListItem { Text = "BE", Value = "2" },
-new SelectListItem { Text = "CE", Value = "3" },
-new SelectListItem { Text = "EE", Value = "4" }
-};
+            {
+            new SelectListItem { Text = "IT", Value = "1" },
+            new SelectListItem { Text = "BE", Value = "2" },
+            new SelectListItem { Text = "CE", Value = "3" },
+            new SelectListItem { Text = "EE", Value = "4" }
+            };
             return View();
         }
         [HttpPost("Add")]
@@ -51,7 +49,7 @@ new SelectListItem { Text = "EE", Value = "4" }
         {
             s.Id = students.Last<Student>().Id;
             students.Add(s);
-            return View("ListStudent", students);
+            return View("Index", students);
         }
     }
 }
